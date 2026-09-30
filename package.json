@@ -7,15 +7,23 @@
   "author": "Giovanny Engamba <hello@giovannyengamba.com> (https://www.giovannyengamba.com)",
   "homepage": "https://www.otopcy.com",
   "keywords": [
-    "starter-kit", "nextjs", "prisma", "postgresql",
-    "payments", "webhooks", "security", "audit", "playbook",
-    "claude-code", "skills"
+    "starter-kit",
+    "nextjs",
+    "prisma",
+    "postgresql",
+    "payments",
+    "webhooks",
+    "security",
+    "audit",
+    "playbook",
+    "claude-code",
+    "skills"
   ],
   "scripts": {
     "verifier": "npm run verifier:liens && npm run verifier:secrets && npm run verifier:ts",
     "verifier:liens": "node scripts/verifier-liens.mjs",
     "verifier:secrets": "bash scripts/verifier-secrets.sh",
-    "verifier:ts": "tsc --noEmit --noResolve --skipLibCheck --ignoreConfig --target es2022 --module esnext --moduleResolution bundler $(find modules -name '*.ts')"
+    "verifier:ts": "tsc --noEmit --noResolve --skipLibCheck --target es2022 --module esnext --moduleResolution bundler $(find modules -name '*.ts') 2>&1 | grep -E 'error TS1[0-9]{3}:' && { echo '✗ erreur de syntaxe'; exit 1; } || echo '✓ aucune erreur de syntaxe'"
   },
   "devDependencies": {
     "typescript": "^5.7.0"

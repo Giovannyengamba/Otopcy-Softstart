@@ -37,7 +37,7 @@ jobs:
         # fichiers, pas vers ce dépôt. On vérifie donc la SYNTAXE, pas la
         # résolution — voir modules/UTILISER-LE-CODE.md.
         run: |
-          npx tsc --noEmit --noResolve --skipLibCheck --ignoreConfig \
+          npx tsc --noEmit --noResolve --skipLibCheck \
             --target es2022 --module esnext --moduleResolution bundler \
             $(find modules -name '*.ts') 2>&1 | tee /tmp/tsc.txt || true
           if grep -qE 'error TS1[0-9]{3}:' /tmp/tsc.txt; then
