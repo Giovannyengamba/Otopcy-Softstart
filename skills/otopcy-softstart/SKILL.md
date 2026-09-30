@@ -1,6 +1,6 @@
 ---
 name: otopcy-softstart
-description: Use when starting a new web project, or when making a structural decision on an existing one — folder layout, where server code lives, which provider to add, what to check before shipping. This is the router for the Otopcy SoftStart playbook; it carries the ten non-negotiable rules and points to the specialised skills (otopcy-architecture, otopcy-securite, otopcy-paiements, otopcy-performance, otopcy-admin, otopcy-audit). Reference stack is Next.js App Router + Prisma + PostgreSQL + Redis on Vercel, but the rules are stack-agnostic.
+description: Use when starting a new web project, or when making a structural decision on an existing one — folder layout, where server code lives, which provider to add, what to check before shipping. This is the router for the Otopcy SoftStart playbook; it carries the ten non-negotiable rules and points to the specialised skills (otopcy-architecture, otopcy-securite, otopcy-paiements, otopcy-performance, otopcy-admin, otopcy-outils, otopcy-audit). Reference stack is Next.js App Router + Prisma + PostgreSQL + Redis on Vercel, but the rules are stack-agnostic.
 ---
 
 # Otopcy SoftStart — socle
@@ -38,6 +38,7 @@ portail d'administration, paiements mobile money et PayPal.
 | Argent, webhooks, devises, retraits | `otopcy-paiements` |
 | Lenteur, cache, ISR, crons | `otopcy-performance` |
 | Back-office, audit, capacités | `otopcy-admin` |
+| Choisir un service, comptes Google, DNS | `otopcy-outils` |
 | Avant mise en ligne | `otopcy-audit` |
 
 ## Le motif d'une route, à reproduire tel quel

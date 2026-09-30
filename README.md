@@ -20,7 +20,7 @@ ce qui doit changer à chaque projet, l'ossature est ce qui ne doit pas.
 
 |  | |
 |---|---|
-| ✅ | Un **playbook en dix modules** : architecture, sécurité, paiements, administration, performance, statistiques, SEO, e-mails, tâches planifiées, processus. |
+| ✅ | Un **playbook en onze modules** : architecture, sécurité, paiements, administration, performance, statistiques, SEO, e-mails, tâches planifiées, processus, comptes et outils. |
 | ✅ | Du **code réellement réutilisable**, dans `modules/*/code/` — à copier dans ton projet, pas à installer. |
 | ✅ | Une **liste exhaustive des clés** à connecter, ce que chacune débloque, et ce qui se passe quand elle manque. |
 | ✅ | Un **audit de sécurité en 20 contrôles**, avec la méthode de vérification de chacun. |
@@ -64,6 +64,7 @@ peut prendre les paiements sans prendre le SEO.
 | 07 | [E-mails](modules/07-emails/) | Envoi transactionnel, file d'attente, notifications sans doublon |
 | 08 | [Tâches planifiées](modules/08-taches-planifiees/) | Pourquoi `setInterval` ne marche pas, crons signés, verrous entre instances |
 | 09 | [Processus](modules/09-processus/) | La barrière avant commit, les conventions, et comment travailler avec un agent IA sans se faire mal |
+| 10 | [Comptes et outils](modules/10-comptes-et-outils/) | Quels services brancher, dans quel ordre ; la constellation Google, le DNS, les contraintes du serverless |
 
 Transversal : [`cles/`](cles/) — toutes les variables d'environnement.
 [`audit/`](audit/) — les 20 contrôles avant mise en ligne.

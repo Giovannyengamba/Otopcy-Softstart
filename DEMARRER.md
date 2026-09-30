@@ -157,4 +157,5 @@ erreur visible — juste un trou.
 | Le site est lent | [04 — Performance](modules/04-performance/) |
 | Tu veux savoir qui vient | [05 — Statistiques](modules/05-statistiques/) |
 | Tu veux être trouvé | [06 — SEO](modules/06-seo/) |
+| Tu dois brancher un service, ou un compte Google | [10 — Comptes et outils](modules/10-comptes-et-outils/) |
 | **Avant la mise en ligne** | [audit/](audit/) — les 20 contrôles |

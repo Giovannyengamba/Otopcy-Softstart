@@ -171,6 +171,62 @@ contenu mais pas à l'argent — tu changes une table, pas trente composants.
 
 ---
 
+## Connexion Google (et tout autre OAuth)
+
+Un bouton « Se connecter avec Google » a l'air d'un raccourci sans risque.
+Il porte en réalité **le vecteur de prise de compte le plus direct de tout
+ce module**.
+
+### L'invariant critique
+
+```ts
+// dans la route de rappel, AVANT toute recherche de compte
+if (claims.email_verified !== true) {
+  log.warn('oauth.rappel: email_verified=false refusé', { sub: claims.sub });
+  return redirect('/auth/error?code=GOOGLE_EMAIL_NOT_VERIFIED');
+}
+```
+
+**Le scénario si tu l'oublies.** Ton application relie un compte Google à un
+compte local **par l'e-mail** — c'est ce que tout le monde fait, et c'est
+correct. Un attaquant crée alors un compte Google (ou Workspace sur un
+domaine qu'il contrôle) portant l'adresse de sa victime, sans la vérifier.
+Il clique sur « Se connecter avec Google ». Ton code trouve un compte local
+avec cette adresse, considère la preuve de possession comme faite, et lui
+ouvre la session.
+
+Il n'a jamais eu accès à la boîte mail de la victime. Il n'a pas eu besoin
+de son mot de passe. Et rien, dans tes journaux, n'aura l'air anormal.
+
+Cette seule ligne ferme la faille. C'est la première chose à vérifier dans
+une revue d'OAuth, avant même de regarder le reste.
+
+### Le reste, qui compte aussi
+
+| Point | Pourquoi |
+|---|---|
+| **PKCE** (`code_verifier`), pas seulement `state` | Le `state` défend contre le CSRF ; PKCE défend contre l'interception du code |
+| Cookies `state` + `verifier` **à durée courte** (5 min) et **portés sur `/api/auth/oauth`** | Ils ne partent pas avec chaque requête du site |
+| Valider le `state` reçu contre le cookie, **et le supprimer ensuite** | Un `state` rejouable est un `state` inutile |
+| Lier par e-mail **seulement si vérifié** | Voir ci-dessus |
+| Un compte OAuth par fournisseur, table séparée | Permet plusieurs fournisseurs sans dupliquer l'utilisateur |
+| Erreurs vers une page dédiée avec un **code**, pas un message | `\/auth/error?code=…` — traduisible, et ne fuit rien |
+
+### Et si la clé manque
+
+Comme partout : le bouton disparaît, l'application démarre. Sans
+`GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` / `GOOGLE_REDIRECT_URI`, la
+route renvoie 404 et l'interface ne propose pas le bouton.
+
+> ⚠️ L'URI de redirection doit être **déclarée à l'identique** dans la
+> console Google, protocole et barre oblique finale compris. C'est la
+> première cause de `redirect_uri_mismatch`, et le message ne dit pas ce
+> qui diffère.
+
+→ [`code/oauth/google.ts`](code/oauth/google.ts)
+
+---
+
 ## En-têtes et politique de contenu
 
 Dans `next.config.ts`, pas dans le middleware — pour que le réseau de
@@ -272,4 +328,5 @@ sans rien casser.
 | [`code/crypto.ts`](code/crypto.ts) | Jetons, comparaison à temps constant |
 | [`code/upload/sniff.ts`](code/upload/sniff.ts) | Validation par octets magiques |
 | [`code/security-headers.ts`](code/security-headers.ts) | CSP et en-têtes, prêts à coller |
+| [`code/oauth/google.ts`](code/oauth/google.ts) | OAuth Google : PKCE, état, décodage du jeton d'identité |
 | [`code/api-client.ts`](code/api-client.ts) | Le client navigateur |

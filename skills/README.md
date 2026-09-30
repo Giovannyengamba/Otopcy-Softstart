@@ -1,6 +1,6 @@
 # Le kit comme compétences Claude Code
 
-Sept compétences qui font qu'un agent applique ces règles de lui-même, au
+Huit compétences qui font qu'un agent applique ces règles de lui-même, au
 lieu de réinventer un `POST` sans CSRF à chaque route.
 
 ```bash
@@ -19,6 +19,7 @@ modules, l'agent ira y chercher le détail et le code.
 | `otopcy-paiements` | Tout ce qui touche à l'argent, webhooks, devises |
 | `otopcy-performance` | Lenteur, cache, ISR, tâches planifiées |
 | `otopcy-admin` | Back-office, journal d'audit, capacités |
+| `otopcy-outils` | Choisir un service, ouvrir un compte Google, DNS, contraintes serverless |
 | `otopcy-audit` | Avant mise en ligne, revue de sécurité |
 
 Rappel du [module 09](../modules/09-processus/) : une compétence ne remplace
