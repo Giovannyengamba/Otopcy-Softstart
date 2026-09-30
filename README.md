@@ -37,6 +37,56 @@ Redis**, déployée sur Vercel. Les principes valent au-delà ; le code, non.
 
 ---
 
+## Récupérer le kit
+
+Trois façons, selon ce que tu comptes en faire.
+
+### 1. Télécharger l'archive — le plus simple
+
+**[⬇ Télécharger Otopcy SoftStart 1.0.0 (.zip)](https://github.com/Giovannyengamba/otopcy-softstart/releases/latest/download/otopcy-softstart-1.0.0.zip)**
+
+Tu double-cliques, tu obtiens un dossier, tu lis. Aucun outil à installer.
+C'est la bonne option si tu veux juste piocher du code et des règles.
+
+> Depuis la page du dépôt, le même fichier est aussi sous le bouton vert
+> **Code → Download ZIP** — mais il donne l'état du moment, pas la version
+> figée. Pour une version stable, préfère le lien ci-dessus.
+
+### 2. Cloner — si tu comptes suivre les mises à jour
+
+```bash
+git clone https://github.com/Giovannyengamba/otopcy-softstart.git
+cd otopcy-softstart
+```
+
+Un `git pull` plus tard te rapporte les corrections et les nouveaux
+modules. C'est la bonne option si tu t'en sers régulièrement.
+
+### 3. Prendre seulement les compétences IA
+
+Si tu ne veux que la partie qui fait travailler ton agent :
+
+```bash
+git clone --depth 1 https://github.com/Giovannyengamba/otopcy-softstart.git /tmp/softstart
+cp -r /tmp/softstart/skills/* mon-projet/.claude/skills/
+rm -rf /tmp/softstart
+```
+
+### Et ensuite ?
+
+| Tu as | Lis |
+|---|---|
+| Un projet neuf | [`DEMARRER.md`](DEMARRER.md) — les 90 premières minutes |
+| Un projet existant | [`audit/`](audit/) — les 20 contrôles avant de durcir quoi que ce soit |
+| Un besoin précis | Le module concerné, dans le tableau plus bas |
+
+> **Rien à installer, rien à faire tourner.** Ce dépôt n'est pas une
+> application : c'est de la documentation et des fichiers à copier. La seule
+> commande qui existe ici, `npm run verifier`, sert à contrôler le dépôt
+> lui-même — tu n'en as pas besoin pour t'en servir.
+
+---
+
 ## Comment s'en servir
 
 **Projet neuf** → lis [`DEMARRER.md`](DEMARRER.md). Les quatre-vingt-dix

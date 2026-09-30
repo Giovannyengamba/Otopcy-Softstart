@@ -10,6 +10,12 @@ choses qu'on ne corrige plus une fois qu'il y a cent fichiers.
 
 ---
 
+> **Tu n'as pas encore le kit ?**
+> [⬇ Télécharger l'archive (.zip)](https://github.com/Giovannyengamba/otopcy-softstart/releases/latest)
+> ou `git clone https://github.com/Giovannyengamba/otopcy-softstart.git`.
+> Les chemins ci-dessous (`modules/…`) partent de la racine du dossier
+> obtenu. Voir [Récupérer le kit](README.md#récupérer-le-kit).
+
 ## 1. Poser le squelette — 15 min
 
 ```bash

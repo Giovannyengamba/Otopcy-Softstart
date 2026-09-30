@@ -4,7 +4,13 @@ Huit compétences qui font qu'un agent applique ces règles de lui-même, au
 lieu de réinventer un `POST` sans CSRF à chaque route.
 
 ```bash
-cp -r otopcy-softstart/skills/* mon-projet/.claude/skills/
+# depuis le dossier du kit, déjà téléchargé
+cp -r skills/* mon-projet/.claude/skills/
+
+# ou directement, sans garder le kit
+git clone --depth 1 https://github.com/Giovannyengamba/otopcy-softstart.git /tmp/softstart
+cp -r /tmp/softstart/skills/* mon-projet/.claude/skills/
+rm -rf /tmp/softstart
 ```
 
 Chaque `SKILL.md` est **autonome** : il contient les règles essentielles de
