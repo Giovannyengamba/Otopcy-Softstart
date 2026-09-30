@@ -154,6 +154,21 @@ cp -r otopcy-softstart/skills/* mon-projet/.claude/skills/
 
 ---
 
+## Contribuer, publier
+
+| | |
+|---|---|
+| [`PUBLIER.md`](PUBLIER.md) | Mettre ce dépôt en ligne : connexion GitHub, identité des commits, portée `workflow` |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Ce qui a sa place ici, et ce qui n'en a pas |
+| [`SECURITY.md`](SECURITY.md) | Signaler une règle dangereuse, ou un secret oublié |
+| [`CHANGELOG.md`](CHANGELOG.md) | Ce qui a changé |
+
+```bash
+npm install && npm run verifier   # liens · secrets · syntaxe
+```
+
+---
+
 ## Auteur et hébergement
 
 Écrit par **Giovanny Engamba**, UX/UI Designer et développeur —

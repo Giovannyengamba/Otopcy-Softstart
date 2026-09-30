@@ -1,0 +1,51 @@
+# Ce que le dépôt vérifie tout seul, à chaque poussée.
+#
+# Principe du module 09 : quand une règle compte, on écrit le test qui la
+# surveille. Un kit de sécurité qui publierait un secret serait une
+# contradiction vivante — donc le contrôle échoue la construction, ce n'est
+# pas un avertissement qu'on ignore.
+
+name: Vérifications
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Aucun secret dans le dépôt
+        run: bash scripts/verifier-secrets.sh
+
+      - name: Tous les liens internes résolvent
+        run: node scripts/verifier-liens.mjs
+
+      - name: Installer TypeScript
+        run: npm install --no-audit --no-fund
+
+      - name: Syntaxe du code fourni
+        # `--noResolve` : les imports pointent vers le projet qui copiera ces
+        # fichiers, pas vers ce dépôt. On vérifie donc la SYNTAXE, pas la
+        # résolution — voir modules/UTILISER-LE-CODE.md.
+        run: |
+          npx tsc --noEmit --noResolve --skipLibCheck --ignoreConfig \
+            --target es2022 --module esnext --moduleResolution bundler \
+            $(find modules -name '*.ts') 2>&1 | tee /tmp/tsc.txt || true
+          if grep -qE 'error TS1[0-9]{3}:' /tmp/tsc.txt; then
+            echo "✗ Erreur de syntaxe TypeScript"
+            grep -E 'error TS1[0-9]{3}:' /tmp/tsc.txt
+            exit 1
+          fi
+          echo "✓ Aucune erreur de syntaxe"
+
+      - name: Le script d'audit est exécutable
+        run: bash -n audit/scan.sh && echo "✓ audit/scan.sh valide"

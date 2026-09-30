@@ -1,0 +1,23 @@
+{
+  "name": "otopcy-softstart",
+  "version": "1.0.0",
+  "description": "Le socle technique d'un SaaS qui encaisse de l'argent réel : architecture, sécurité, paiements, administration, performance. Sans design.",
+  "license": "MIT",
+  "private": false,
+  "author": "Giovanny Engamba <hello@giovannyengamba.com> (https://www.giovannyengamba.com)",
+  "homepage": "https://www.otopcy.com",
+  "keywords": [
+    "starter-kit", "nextjs", "prisma", "postgresql",
+    "payments", "webhooks", "security", "audit", "playbook",
+    "claude-code", "skills"
+  ],
+  "scripts": {
+    "verifier": "npm run verifier:liens && npm run verifier:secrets && npm run verifier:ts",
+    "verifier:liens": "node scripts/verifier-liens.mjs",
+    "verifier:secrets": "bash scripts/verifier-secrets.sh",
+    "verifier:ts": "tsc --noEmit --noResolve --skipLibCheck --ignoreConfig --target es2022 --module esnext --moduleResolution bundler $(find modules -name '*.ts')"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

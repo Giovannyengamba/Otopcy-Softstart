@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Faille de sécurité dans un conseil du kit
+    url: https://github.com/otopcy/otopcy-softstart/security/advisories/new
+    about: Divulgation privée — ne pas ouvrir de ticket public
+  - name: Question d'usage
+    url: mailto:hello@otopcy.com
+    about: Comment adapter un module à ton projet
