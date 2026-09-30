@@ -5,7 +5,7 @@ labels: correction
 ---
 
 > ⚠️ Si la règle expose une faille **exploitable**, n'ouvre pas de ticket
-> public : écris à hello@otopcy.com. Voir [SECURITY.md](../../SECURITY.md).
+> public : écris à hello@giovannyengamba.com. Voir [SECURITY.md](../../SECURITY.md).
 
 **Où** — fichier et section.
 

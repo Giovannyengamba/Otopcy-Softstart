@@ -60,40 +60,41 @@ gh auth refresh -h github.com -s workflow
 
 ---
 
-## 2. Choisir l'identité des commits
+## 2. L'identité des commits — déjà réglée
 
-Les trois commits actuels portent `otopcycorp <g.engamba@cedcameroun.org>`.
-Si tu publies sous un autre compte, **GitHub ne les attribuera pas** : ils
-apparaîtront sans ton avatar, en dehors de ton graphe de contributions.
-
-### Vérifier
+Les commits portent `giovannyengamba <engambagiovanny@gmail.com>`, l'adresse
+du compte GitHub. Ils seront donc attribués correctement : avatar, et
+comptés dans le graphe de contributions.
 
 ```bash
-git log --format='%an <%ae>'
+git log --format='%an <%ae>'   # vérifier avant de pousser
 ```
 
-### Réécrire (le dépôt n'est pas encore poussé — c'est sans risque)
+Le dépôt a sa propre configuration locale, indépendante de la globale :
 
 ```bash
-cd "/Users/apple/Documents/OTOPCY SAAS/Otopcy SoftStart"
-
-# 1. l'identité de CE dépôt, pour les commits futurs
-git config user.name  "ton-pseudo-github"
-git config user.email "ton-email@exemple.com"
-
-# 2. réécrire les commits déjà faits
-git -c user.name="ton-pseudo-github" -c user.email="ton-email@exemple.com" \
-    rebase --root --exec 'git commit --amend --no-edit --reset-author'
-
-git log --format='%an <%ae>'   # vérifier
+git config user.name    # giovannyengamba
+git config user.email   # engambagiovanny@gmail.com
 ```
 
-> L'e-mail doit être **celui déclaré sur le compte GitHub**, sinon
-> l'attribution échoue silencieusement. Si tu ne veux pas le publier,
-> active l'adresse privée dans les réglages GitHub et utilise la forme
-> `<id>+<pseudo>@users.noreply.github.com`.
+> Cette adresse sera **publique** dans l'historique — c'est inévitable dès
+> qu'on publie des commits. Si tu préfères la masquer, GitHub fournit un
+> alias : réglages → Emails → *Keep my email addresses private*, puis
+> réutilise `<id>+giovannyengamba@users.noreply.github.com` ici et réécris
+> l'historique avec la commande ci-dessous. À faire **avant** la première
+> poussée.
+>
+> ```bash
+> git config user.email "<le-nouvel-email>"
+> git rebase --root --exec 'git commit --amend --no-edit --reset-author'
+> ```
 
----
+**Ne pas confondre les deux adresses :**
+
+| Adresse | Sert à |
+|---|---|
+| `engambagiovanny@gmail.com` | **Signer les commits** — technique, liée au compte GitHub |
+| `hello@giovannyengamba.com` | **Être contacté** — c'est elle qui s'affiche dans le kit |
 
 ## 3. Créer le dépôt et pousser
 
@@ -140,7 +141,7 @@ n'est pas décoratif : il fait échouer la construction.
 |---|---|---|
 | `refusing to allow an OAuth App to create or update workflow` | Portée `workflow` absente | `gh auth refresh -h github.com -s workflow` |
 | `Permission denied` / `403` à la poussée | Mauvais compte actif | `gh auth switch --user <compte>` |
-| Les commits n'ont ni avatar ni attribution | E-mail non déclaré sur le compte | Ajoute-le dans les réglages GitHub, ou réécris (§2) |
+| Les commits n'ont ni avatar ni attribution | `engambagiovanny@gmail.com` non déclaré sur le compte GitHub | Ajoute-le dans réglages → Emails |
 | `repository already exists` | Nom déjà pris | Change le nom, ou `gh repo delete <nom>` |
 | Git redemande le mot de passe | `credential.helper` non posé | `gh auth setup-git` |
 | L'intégration continue échoue sur les secrets | Un vrai secret est entré | **Révoquer**, puis retirer. Voir [SECURITY.md](SECURITY.md) |

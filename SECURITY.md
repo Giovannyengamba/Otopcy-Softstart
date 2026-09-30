@@ -7,7 +7,7 @@ Les fichiers `.env.example` ne portent que des valeurs factices, et
 chaque poussée — un secret détecté fait échouer l'intégration continue.
 
 **Si tu trouves quoi que ce soit qui ressemble à une vraie clé dans ce
-dépôt, c'est un bug.** Écris à [hello@otopcy.com](mailto:hello@otopcy.com)
+dépôt, c'est un bug.** Écris à [hello@giovannyengamba.com](mailto:hello@giovannyengamba.com)
 sans ouvrir de ticket public.
 
 ## Signaler une règle dangereuse
@@ -17,7 +17,7 @@ grave qu'une règle absente : elle sera appliquée telle quelle dans de vraies
 applications.
 
 Si tu penses qu'un conseil de ce kit ouvre une faille au lieu de la fermer,
-écris à [hello@otopcy.com](mailto:hello@otopcy.com). Décris le scénario
+écris à [hello@giovannyengamba.com](mailto:hello@giovannyengamba.com). Décris le scénario
 d'attaque concret plutôt que la théorie — c'est ce qui permet de trancher
 vite.
 

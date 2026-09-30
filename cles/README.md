@@ -5,7 +5,7 @@
 
 **Aucune vraie clé ne figure dans ce dépôt.** `.env.example` ne contient
 que des valeurs factices. Si tu crois en voir une, c'est un bug : écris à
-[hello@otopcy.com](mailto:hello@otopcy.com).
+[hello@giovannyengamba.com](mailto:hello@giovannyengamba.com).
 
 ---
 
