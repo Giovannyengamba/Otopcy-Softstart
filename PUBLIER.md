@@ -148,6 +148,68 @@ n'est pas décoratif : il fait échouer la construction.
 
 ---
 
+## 5. Au quotidien — améliorer le kit
+
+Le dossier vit sur ta machine, dans
+`~/Documents/OTOPCY SAAS/Otopcy SoftStart/`. C'est un dépôt Git complet,
+relié à GitHub : tu modifies, tu vérifies, tu pousses.
+
+```bash
+cd ~/Documents/"OTOPCY SAAS"/"Otopcy SoftStart"
+
+# 1. modifier ce que tu veux
+
+# 2. vérifier — liens, secrets, syntaxe
+npm run verifier
+
+# 3. publier
+git add -A
+git commit -m "docs(paiements): le piège du remboursement partiel"
+git push
+```
+
+### ⚠️ Le compte GitHub actif
+
+Plusieurs comptes sont connectés sur cette machine, et `gh` n'en sert
+**qu'un à la fois** — celui qui est actif. Le kit appartient à
+`Giovannyengamba`, le site à `otopcycorp`. Une poussée avec le mauvais
+compte actif échoue par `Repository not found`, ce qui est trompeur : le
+dépôt existe, c'est le jeton qui ne le voit pas.
+
+```bash
+gh auth status                            # qui est actif
+gh auth switch --user Giovannyengamba     # avant de pousser le KIT
+gh auth switch --user otopcycorp          # avant de pousser le SITE
+```
+
+### Ce qui se vérifie tout seul
+
+À chaque poussée, GitHub relance les trois contrôles. Si l'un échoue, tu
+reçois un e-mail et une croix rouge sur le commit :
+
+| Contrôle | Ce qu'il empêche |
+|---|---|
+| Secrets | Qu'une vraie clé entre dans un dépôt public |
+| Liens | Qu'un sommaire mente |
+| Syntaxe | Qu'un fichier de `modules/*/code/` soit inutilisable |
+
+`npm run verifier` fait les trois en local, avant de pousser.
+
+### Publier une nouvelle version
+
+Quand un lot de changements mérite d'être marqué :
+
+```bash
+# 1. ajouter la section dans CHANGELOG.md
+# 2. étiqueter
+gh release create v1.1.0 --title "Otopcy SoftStart 1.1.0" --notes "…"
+```
+
+Sur un dépôt de documentation, une **majeure** signifie qu'une règle a
+changé de sens — pas qu'une API a bougé.
+
+---
+
 ## Après la mise en ligne
 
 - [ ] Le README s'affiche correctement, les tableaux et les liens tiennent
